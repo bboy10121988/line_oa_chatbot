@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const { verifyLineSignature } = require('./middleware/lineMiddleware');
-const lineController = require('./controllers/lineController');
+const { handleWebhook } = require('./controllers/lineController');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +12,16 @@ app.get('/', (req, res) => {
     res.json({ 
         status: 'LINE Bot is running!',
         timestamp: new Date().toISOString()
+    });
+});
+
+// 環境變數檢查端點（僅顯示是否存在，不顯示實際值）
+app.get('/env-check', (req, res) => {
+    res.json({
+        CHANNEL_ACCESS_TOKEN: !!process.env.CHANNEL_ACCESS_TOKEN,
+        CHANNEL_SECRET: !!process.env.CHANNEL_SECRET,
+        DEEPSEEK_API_KEY: !!process.env.DEEPSEEK_API_KEY,
+        DEEPSEEK_API_BASE: process.env.DEEPSEEK_API_BASE || 'not set'
     });
 });
 
@@ -30,7 +40,7 @@ app.post('/webhook',
         next();
     },
     verifyLineSignature, 
-    lineController.handleWebhook
+    handleWebhook
 );
 
 app.listen(PORT, () => {
