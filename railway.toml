@@ -1,0 +1,15 @@
+name = "line-chatbot-project"
+description = "A LINE chatbot project using Railway for deployment."
+
+[build]
+builder = "nixpacks"
+
+[deploy]
+healthcheckPath = "/"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure" 
+
+[env]
+  LINE_CHANNEL_ID = "1638463423"
+  LINE_CHANNEL_SECRET = "8fe8c826c35819f5573b12f3e9c0b500"
+  DEEKSEEK_API_KEY = "sk-4e8e0a6cdb2e4271a397efdcd04fcb29"

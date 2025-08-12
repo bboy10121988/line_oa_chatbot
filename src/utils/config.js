@@ -1,0 +1,3 @@
+export const LINE_CHANNEL_ID = '1638463423';
+export const LINE_CHANNEL_SECRET = '8fe8c826c35819f5573b12f3e9c0b500';
+export const DEEKSEEK_API_KEY = process.env.DEEKSEEK_API_KEY;
