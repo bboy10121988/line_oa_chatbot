@@ -2,7 +2,7 @@ const axios = require('axios');
 
 class AIService {
     constructor() {
-        this.apiKey = process.env.AI_API_KEY;
+        this.apiKey = process.env.DEEPSEEK_API_KEY;
         this.baseUrl = process.env.DEEPSEEK_API_BASE || 'https://api.deepseek.com/v1';
     }
 
